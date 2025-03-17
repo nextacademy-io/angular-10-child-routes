@@ -1,0 +1,28 @@
+<div class="flex flex-col gap-4" *ngIf="clash() as clash">
+  <h3 class="text-xl font-bold">{{ clash.title }} ({{ clash.id }})</h3>
+  <p>{{ clash.description }}</p>
+  <p>⏰ {{ clash.date | date : "medium" }}</p>
+  <p>📍 {{ clash.location }}, {{ clash.address }}</p>
+  <div class="flex flex-row gap-2 items-center">
+    <app-profile-picture
+      [diameter]="48"
+      [profileUrl]="clash.createdByPeer.pictureUrl"
+    ></app-profile-picture>
+    <span>{{ clash.createdByPeer.name }}</span>
+  </div>
+  <div class="flex flex-col gap-2">
+    <span class="font-semibold">Participating:</span>
+    <div class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-2">
+      @for (peer of participants(); track peer.id) {
+      <div class="flex flex-row gap-2 items-center">
+        <app-profile-picture
+          [diameter]="32"
+          [profileUrl]="peer.pictureUrl"
+        ></app-profile-picture>
+        {{ peer.name }}
+      </div>
+      }
+    </div>
+  </div>
+  <a routerLink="..">←&nbsp;Back</a>
+</div>

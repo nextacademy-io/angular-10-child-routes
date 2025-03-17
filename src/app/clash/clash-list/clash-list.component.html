@@ -1,0 +1,6 @@
+<h2 class="text-2xl font-bold">Clashes</h2>
+<div class="mt-8 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
+  @for (clash of clashes(); track clash.id) {
+  <app-clash-card [clash]="clash"></app-clash-card>
+  }
+</div>

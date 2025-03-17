@@ -1,0 +1,23 @@
+<div
+  class="border-2 border-gray-200 rounded-lg p-2 flex gap-2 flex-col shadow max-w-64 max-h-72"
+  *ngIf="clash() as clash"
+>
+  <img
+    [src]="clash.pictureUrl"
+    [alt]="clash.title"
+    class="object-cover h-48 max-h-48 w-full"
+  />
+  <a [routerLink]="['/clashes', clash.id]">
+    <h2 class="text-green-800 hover:text-green-600">
+      {{ clash.title }}
+    </h2>
+  </a>
+  <div class="flex flex-row gap-2 mb-2 overflow-ellipsis">
+    @for (peer of participants(); track peer.id) {
+    <app-profile-picture
+      [diameter]="32"
+      [profileUrl]="peer.pictureUrl"
+    ></app-profile-picture>
+    }
+  </div>
+</div>
